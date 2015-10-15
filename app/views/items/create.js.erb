@@ -1,0 +1,4 @@
+// $("#bid_form").html("<%= j(render 'items/bid_form') %>")
+<%# renders messages/_message.html.erb %>
+$('#bid_form').prepend('<%=j render bid_form %>');
+$('#<%= #bid_form @bid %>').highlight();
