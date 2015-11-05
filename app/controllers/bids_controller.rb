@@ -1,18 +1,10 @@
 class BidsController < ApplicationController
 
   def create
-    @bid = Bid.create!(bid_params)
-    redirect_to @bid.item do |format|
-      format.html
-      format.ajax { dataType 'html'}
-    end
-
-    # if @bid.save
-    #   redirect_to @bid.item, notice: 'Your bid has been recorded!'
-    # else
-    #   @item = @bid.item
-    #   render "items/show"
-    # end
+    Bid.create!(bid_params)
+    @item = Item.find(params[:bid][:item_id])
+    @bid = Bid.new(item: @item, amount: @item.next_bid_amount)
+    render 'items/create'
   end
 
 
